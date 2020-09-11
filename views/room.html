@@ -1,23 +1,117 @@
+<div class="container-fluid h-100">
+	<div class="row split" id="b">
 
-	<section class = "row">
+		<div id="d" class="split content split-horizontal" >
+			<div id="api-parent" class="box" style="height: 100%;  webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px; margin:0 auto; overflow:hidden; background-color:black;"></div>
+		</div>
 
-		<section class= "col-sm-8">
-			<h1>{{name}}</h1>
-			{{> messenger}}
-		</section>
+		<div id="e" class="split content split-horizontal" >
+			<div class="col h-100" style="text-align:center; ">
+				
+				<div id="api-parent" class="box mt-auto" style="height: 100%; webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px; margin:0 auto; overflow:hidden;">
+					<iframe style="background-color:black;"
+						id="streamIframe"
+						src="https://www.youtube.com/embed/0Q7yihOEZ5U"
+						height="100%"
+						width="100%"
+						frameborder="0"
+						scrolling="no"
+						allowfullscreen="true">
+					</iframe> 
+				</div>
 
-		<section class= "col-sm-4">
+				<div style="top: -15px; position:relative;">
+					<form id="messenger">
+						<input id="channelSearch" type="search">
+						<i class="fa fa-twitch"></i>
+					</form>
 
-			<h2><a id="back-to-lobby">Back to lobby</a></h2>
-
-			<h3>People</h3>
-			<ul class="list-unstyled" id = "people">
-			{{#eachInMap people}}
-				<li id="{{key}}">{{value.name}}</li>
-			{{/eachInMap}}
-			</ul>
+				</div>
+				<!-- <iframe width="100%" height="100%" scrolling="no" src="https://www.youtube.com/embed/jX5thrOpocE?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    -->
+			</div>
+		</div>
+	</div>
+</div>
 
 
-		</section>
 
-	</section>
+
+
+<script>
+	var room_id = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
+	var parentElement = document.getElementById('api-parent');
+	var domain = "meet.jit.si";
+	var options = {
+		roomName: room_id,
+		width: "100%",
+		height: "100%",
+		parentNode: parentElement,
+		configOverwrite: {},
+		interfaceConfigOverwrite: {
+			DEFAULT_BACKGROUND: '#000000',
+			DISABLE_VIDEO_BACKGROUND: true,
+			filmStripOnly: false,
+			VERTICAL_FILMSTRIP: true, 
+			FILM_STRIP_MAX_HEIGHT: 400,
+			VIDEO_LAYOUT_FIT: 'width',
+			SHOW_JITSI_WATERMARK: false,
+			SHOW_WATERMARK_FOR_GUESTS: false,
+			SHOW_BRAND_WATERMARK: false,
+			BRAND_WATERMARK_LINK: '',
+			SHOW_POWERED_BY: false,
+			SHOW_DEEP_LINKING_IMAGE: false,
+			GENERATE_ROOMNAMES_ON_WELCOME_PAGE: true,
+			DISPLAY_WELCOME_PAGE_CONTENT: true,
+			DISPLAY_WELCOME_PAGE_TOOLBAR_ADDITIONAL_CONTENT: false,
+			APP_NAME: 'TEST 1',
+			NATIVE_APP_NAME: 'TEST 1',
+			PROVIDER_NAME: 'Provider',
+			INVITATION_POWERED_BY: false,
+
+		}
+	}
+	var api = new JitsiMeetExternalAPI(domain, options);
+	api.executeCommand('subject', ' ');
+
+</script>
+
+
+<script>
+	Split(['#b'], {
+		gutterSize: 20,
+		cursor: 'pointer',
+		direction: 'vertical',
+	});
+	Split(['#d', '#e' ], {
+		sizes: [30, 70],
+		gutterSize: 20,
+		cursor: 'row-resize',
+	});
+</script>
+
+
+
+<script>
+	var input = document.querySelector('.search-form');
+	var search = document.querySelector('input')
+	var button = document.querySelector('button');
+	button.addEventListener('click', function(e) {
+	e.preventDefault();
+	input.classList.toggle('active');
+	})
+	search.addEventListener('focus', function() {
+	input.classList.add('focus');
+	})
+
+	search.addEventListener('blur', function() {
+	search.value.length != 0 ? input.classList.add('focus') : input.classList.remove('focus');
+	})
+</script>
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 function Room(name, allPeople){
 	this.name = name;
-	this.id = hash(name);
+	this.id = name;
 	this.people = {};
     this.allPeople = allPeople;
 
